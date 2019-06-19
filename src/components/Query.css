@@ -1,5 +1,22 @@
-.query {
+.query-wrapper {
     margin: 5vh 5vw;
-    padding: 5vh 5vw;
+    padding: 2vh 3vw;
     background-color: bisque
+}
+
+
+.query-wrapper header {
+    font-size: x-large;
+    font-weight: bolder;
+    margin-bottom: 1rem;
+}
+
+.query {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly
+}
+
+.selector {
+    margin: 0 1rem;
 }
