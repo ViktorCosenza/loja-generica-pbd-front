@@ -1,8 +1,18 @@
 .filters {
     display: flex;
+    flex: 1 0;
+    margin-left: 5%;
     flex-direction: column; 
 }
 
-.fields {
+.field-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+}
 
+.field input {
+    margin: 5px;
+    height: 15%;
 }
