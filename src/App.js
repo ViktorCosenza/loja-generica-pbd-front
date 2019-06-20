@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 import Query from './components/Query'
 import Results from './components/Results'
@@ -7,7 +7,9 @@ import schemaInfo from './utils/dbFields'
 import './App.css'
 
 function App () {
-  /* TODO Add display */
+  const [data, setData] = useState(null)
+  const [requestType, setRequestType] = useState(null)
+
   const handleSubmit = query => {
     const { method, table, search, where } = query
     const request = {
@@ -16,10 +18,12 @@ function App () {
       data: {
         search,
         where
-      }
+      },
+      params: search
     }
+    setRequestType(method)
     axios(request)
-      .then(response => console.log(response))
+      .then(response => setData(response.data))
       .catch(err => console.log(err))
   }
 
@@ -32,7 +36,10 @@ function App () {
         schemaInfo={schemaInfo}
         handleSubmit={handleSubmit}
       />
-      <Results />
+      <Results
+        type={requestType}
+        data={data}
+      />
     </div>
   )
 }
