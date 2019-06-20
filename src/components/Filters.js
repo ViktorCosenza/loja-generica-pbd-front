@@ -5,17 +5,40 @@ import './Filters.css'
 function Filter (props) {
   const method = props.filterMethod
   const columns = props.columns
-  const [inputs, setInputs] = useState({})
+  const [searchInputs, setSearchInputs] = useState({})
+  const [whereInputs, setWhereInputs] = useState({})
 
   useEffect(() => {
-    setInputs({})
+    cleanInputs()
   }, [columns])
 
-  const handleChange = (e) => {
+  const cleanInputs = () => {
+    setSearchInputs({})
+    setWhereInputs({})
+  }
+
+  const handleSubmit = () => {
+    let query = {}
+    if (method === 'get' || method === 'put' || method === 'post') {
+      query['search'] = searchInputs
+    }
+    if (method === 'delete' || method === 'update') {
+      query['where'] = whereInputs
+    }
+    query['method'] = method
+    props.handleSubmit(query)
+  }
+
+  const handleSearchChange = (e) => {
     const name = e.target.name
     const value = e.target.value
-    setInputs({ ...inputs, [name]: value })
-    console.log(inputs)
+    setSearchInputs({ ...searchInputs, [name]: value })
+  }
+
+  const handleWhereChange = (e) => {
+    const name = e.target.name
+    const value = e.target.value
+    setWhereInputs({ ...whereInputs, [name]: value })
   }
 
   return (
@@ -28,10 +51,10 @@ function Filter (props) {
             Object.keys(columns).map((key, idx) =>
               <input
                 key={idx}
-                name={key + '-search'}
-                value={inputs[key + '-search'] || ''}
+                name={key}
+                value={searchInputs[key] || ''}
                 placeholder={columns[key]}
-                onChange={(e) => handleChange(e)}
+                onChange={(e) => handleSearchChange(e)}
               />
             )
           }
@@ -43,9 +66,10 @@ function Filter (props) {
               Object.keys(columns).map((key, idx) =>
                 <input
                   key={idx + Object.keys(columns).length}
-                  name={key + '-where'}
+                  name={key}
+                  value={whereInputs[key] || ''}
                   placeholder={columns[key]}
-                  onChange={(e) => handleChange(e)}
+                  onChange={(e) => handleWhereChange(e)}
                 />
               )
           }
@@ -55,10 +79,13 @@ function Filter (props) {
         <button
           type='submit'
           value='submit'
-          onClick={e => console.log('submitted')}
-        >
-        SUBMIT
-        </button>
+          onClick={() => handleSubmit()}
+        > SUBMIT </button>
+        <button
+          type='reset'
+          value='reset'
+          onClick={() => { cleanInputs() }}
+        > RESET </button>
       </div>
     </div>
   )

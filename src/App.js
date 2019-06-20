@@ -7,6 +7,11 @@ import schemaInfo from './utils/dbFields'
 import './App.css'
 
 function App () {
+
+  const handleSubmit = (data) => {
+    console.log('Submitted')
+    console.log(data)
+  }
   return (
     <div className='App'>
       <header className='App-header'>
@@ -14,9 +19,7 @@ function App () {
       </header>
       <Query
         schemaInfo={schemaInfo}
-        onSubmit={() => {
-          console.log('Submitted')
-        }}
+        handleSubmit={handleSubmit}
       />
       <Results />
     </div>

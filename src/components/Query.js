@@ -36,6 +36,7 @@ function Query (props) {
           columns={columns}
           filterMethod={filterMethod || 'get'}
           filterTable={filterTable || 'funcionarios'}
+          handleSubmit={props.handleSubmit}
         />
       </div>
     </div>
