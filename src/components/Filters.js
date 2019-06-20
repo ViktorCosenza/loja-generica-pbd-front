@@ -7,6 +7,7 @@ function Filter (props) {
   const columns = props.columns
   const [searchInputs, setSearchInputs] = useState({})
   const [whereInputs, setWhereInputs] = useState({})
+  const [queryInput, setQueryInput] = useState('')
 
   useEffect(() => {
     cleanInputs()
@@ -15,6 +16,7 @@ function Filter (props) {
   const cleanInputs = () => {
     setSearchInputs({})
     setWhereInputs({})
+    setQueryInput('')
   }
 
   const handleSubmit = () => {
@@ -24,6 +26,9 @@ function Filter (props) {
     }
     if (method === 'delete' || method === 'update') {
       query['where'] = whereInputs
+    }
+    if (method === 'query') {
+      query['query'] = queryInput
     }
     query['method'] = method
     props.handleSubmit(query)
@@ -39,6 +44,34 @@ function Filter (props) {
     const name = e.target.name
     const value = e.target.value
     setWhereInputs({ ...whereInputs, [name]: value })
+  }
+
+  const handleQueryChange = (e) => {
+    setQueryInput(e.target.value)
+  }
+
+  if (method === 'query') {
+    return (
+      <div className='filters'>
+        <textarea
+          name='query'
+          value={queryInput}
+          onChange={e => handleQueryChange(e)}
+        />
+        <div style={{ alignSelf: 'flex-end' }}>
+          <button
+            type='submit'
+            value='submit'
+            onClick={() => handleSubmit()}
+          > SUBMIT </button>
+          <button
+            type='reset'
+            value='reset'
+            onClick={() => { cleanInputs() }}
+          > RESET </button>
+        </div>
+      </div>
+    )
   }
 
   return (

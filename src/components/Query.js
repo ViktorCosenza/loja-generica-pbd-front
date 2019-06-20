@@ -27,20 +27,20 @@ function Query (props) {
       <div className='query'>
         <div className='selector-container'>
           <Selector
-            default='Action'
             items={allowedMethods}
             onChange={event => { setFilterMethod(event.target.value) }}
           />
-          <Selector
-            default='Table'
-            items={allowedTables}
-            onChange={event => { setFilterTable(event.target.value) }}
-          />
+          {
+            filterMethod !== 'query' && <Selector
+              items={allowedTables}
+              onChange={event => { setFilterTable(event.target.value) }}
+            />
+          }
         </div>
         <Filter
           columns={columns}
-          filterMethod={filterMethod || 'get'}
-          filterTable={filterTable || 'funcionarios'}
+          filterMethod={filterMethod}
+          filterTable={filterTable}
           handleSubmit={query => handleSubmit(query)}
         />
       </div>
@@ -50,7 +50,8 @@ function Query (props) {
 
 function Selector (props) {
   return (
-    <select className='selector'
+    <select
+      className='selector'
       onSubmit={props.onSubmit}
       onChange={props.onChange}>
       {
