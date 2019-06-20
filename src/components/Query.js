@@ -16,6 +16,11 @@ function Query (props) {
     setColumns(newColumns)
   }, [columns, props.schemaInfo, filterTable])
 
+  const handleSubmit = (query) => {
+    query['table'] = filterTable
+    props.handleSubmit(query)
+  }
+
   return (
     <div className='query-wrapper'>
       <header> Query Tab </header>
@@ -36,7 +41,7 @@ function Query (props) {
           columns={columns}
           filterMethod={filterMethod || 'get'}
           filterTable={filterTable || 'funcionarios'}
-          handleSubmit={props.handleSubmit}
+          handleSubmit={query => handleSubmit(query)}
         />
       </div>
     </div>
