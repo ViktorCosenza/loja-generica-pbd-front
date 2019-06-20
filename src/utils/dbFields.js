@@ -30,7 +30,7 @@ export default {
   produtos: {
     tipo: 'tipo',
     nome: 'nome',
-    descricao: 'descricao'
+    preco: 'preco'
   },
   tiposProduto: {
     nome: 'nome',
