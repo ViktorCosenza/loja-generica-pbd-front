@@ -1,7 +1,8 @@
 .query-wrapper {
     margin: 5vh 5vw;
     padding: 2vh 3vw;
-    background-color: bisque
+    background-color: bisque;
+    border-radius: 25px;
 }
 
 .query-wrapper header {
