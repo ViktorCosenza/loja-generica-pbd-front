@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
 
 import Filter from './Filters'
 import './Query.css'
@@ -7,24 +6,21 @@ import './Query.css'
 import allowedMethods from '../utils/allowedMethods'
 import allowedTables from '../utils/allowedTables'
 
-function Query () {
-  const [filterMethod, setFilterMethod] = useState(null)
-  const [filterTable, setFilterTable] = useState(null)
-  const [schemaInfo, setSchemaInfo] = useState(null)
+function Query (props) {
+  const [filterMethod, setFilterMethod] = useState('get')
+  const [filterTable, setFilterTable] = useState('funcionarios')
+  const [columns, setColumns] = useState(props.schemaInfo[filterTable])
 
   useEffect(() => {
-    axios.get('http://localhost:3001/v1/column_names')
-      .then(response => {
-        setSchemaInfo(response.data)
-      })
-      .catch(err => console.log('Got err: ' + err))
-  }, [])
+    const newColumns = props.schemaInfo[filterTable]
+    setColumns(newColumns)
+  }, [columns, props.schemaInfo, filterTable])
 
   return (
     <div className='query-wrapper'>
       <header> Query Tab </header>
       <div className='query'>
-        <div>
+        <div className='selector-container'>
           <Selector
             default='Action'
             items={allowedMethods}
@@ -37,9 +33,9 @@ function Query () {
           />
         </div>
         <Filter
-          schemaInfo={schemaInfo}
+          columns={columns}
           filterMethod={filterMethod || 'get'}
-          filterTable={filterTable || 'produtos'}
+          filterTable={filterTable || 'funcionarios'}
         />
       </div>
     </div>
@@ -49,6 +45,7 @@ function Query () {
 function Selector (props) {
   return (
     <select className='selector'
+      onSubmit={props.onSubmit}
       onChange={props.onChange}>
       {
         props.items.map((data, index) =>

@@ -1,6 +1,6 @@
 export default [
   { name: 'get', value: 'Get' },
-  { name: 'insert', value: 'Insert' },
-  { name: 'update', value: 'Update' },
+  { name: 'post', value: 'Insert' },
+  { name: 'put', value: 'Update' },
   { name: 'delete', value: 'Delete' }
 ]

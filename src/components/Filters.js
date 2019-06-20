@@ -3,41 +3,59 @@ import React, { useState, useEffect } from 'react'
 import './Filters.css'
 
 function Filter (props) {
-  const [fields, setFields] = useState(null)
-  const schemaInfo = props.schemaInfo
   const method = props.filterMethod
-  const table = props.filterTable
+  const columns = props.columns
+  const [inputs, setInputs] = useState({})
 
-  /* TODO: USE CORRECT FIELDS FROM TABLE */
   useEffect(() => {
-    console.log(schemaInfo && schemaInfo[table])
-    /* const newFields = schemaInfo && Object.keys(schemaInfo).map((key) =>
-      <input
-        name={schemaInfo[key]}
-        placeholder={key}
-      />
-    )
-    setFields(newFields) */
-  })
+    setInputs({})
+  }, [columns])
+
+  const handleChange = (e) => {
+    const name = e.target.name
+    const value = e.target.value
+    setInputs({ ...inputs, [name]: value })
+    console.log(inputs)
+  }
 
   return (
     <div className='filters'>
-      <div className='fields'>
-        <div className='search-fields'>
-          {schemaInfo && method !== 'delete' &&
-            fields
+      <div className='field-container'>
+        <div className='field'>
+          <header>Search Fields</header>
+          {
+            method !== 'delete' &&
+            Object.keys(columns).map((key, idx) =>
+              <input
+                key={idx}
+                name={key + '-search'}
+                value={inputs[key + '-search'] || ''}
+                placeholder={columns[key]}
+                onChange={(e) => handleChange(e)}
+              />
+            )
           }
         </div>
-        <div className='where-fields'>
-          { (method === 'update' || method === 'delete') &&
-            fields
+        <div className='field'>
+          <header>Where Clause</header>
+          {
+            (method === 'put' || method === 'delete') &&
+              Object.keys(columns).map((key, idx) =>
+                <input
+                  key={idx + Object.keys(columns).length}
+                  name={key + '-where'}
+                  placeholder={columns[key]}
+                  onChange={(e) => handleChange(e)}
+                />
+              )
           }
         </div>
       </div>
       <div style={{ alignSelf: 'flex-end' }}>
         <button
+          type='submit'
           value='submit'
-          onClick={props.handleSubmit}
+          onClick={e => console.log('submitted')}
         >
         SUBMIT
         </button>
