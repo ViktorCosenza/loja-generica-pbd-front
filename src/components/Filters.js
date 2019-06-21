@@ -24,7 +24,7 @@ function Filter (props) {
     if (method === 'get' || method === 'put' || method === 'post') {
       query['search'] = searchInputs
     }
-    if (method === 'delete' || method === 'update') {
+    if (method === 'delete' || method === 'put') {
       query['where'] = whereInputs
     }
     if (method === 'query') {

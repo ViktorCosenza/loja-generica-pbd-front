@@ -4,8 +4,7 @@ import './Results.css'
 
 function Results (props) {
   const data = props.data
-
-  if (props.type !== 'get') {
+  if (props.type !== 'get' && props.type !== 'query') {
     return (
       <div className='results'>
         <header> Results Tab </header>
@@ -18,6 +17,7 @@ function Results (props) {
     <div className='results'>
       <header> Results Tab </header>
       <div className='table-container'>
+        <h4> Altered {props.quantity} rows </h4>
         <table>
           <thead>
             <tr className='table-header'>
@@ -29,9 +29,9 @@ function Results (props) {
               }
             </tr>
           </thead>
-          <tbody>
+          <tbody className='table-body'>
             {
-              data &&
+              data && data.length > 0 &&
             data.map((row, idx) =>
               <tr key={idx + 1}>
                 {
