@@ -1,6 +1,33 @@
 .results {
     margin: 5vh 5vw;
     padding: 5vh 5vw;
-    background-color: brown;
-    border-radius: 25px;
+    background-color: #616161;
+    border-radius: 10px;
+    color: #EEEEEE;
 }
+
+.results header {
+    font-size: xx-large;
+    font-weight: bolder;
+}
+
+.table-container table {
+    width: 100%
+}
+
+.table-header {
+    font-size: x-large;
+    text-transform: uppercase;
+    color: #212121;
+    background-color: #F5F5F5;
+}
+
+.table-body {
+    background-color: #9E9E9E;
+    color: #212121;
+    text-align: center;
+    font-size: large;
+    font-weight: bold;
+    margin-left: 5rem
+}
+

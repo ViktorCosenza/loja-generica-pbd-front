@@ -1,8 +1,9 @@
 .query-wrapper {
     margin: 5vh 5vw;
     padding: 2vh 3vw;
-    background-color: bisque;
-    border-radius: 25px;
+    background-color: #616161;
+    color: #FAFAFA;
+    border-radius: 10px;
 }
 
 .query-wrapper header {
@@ -28,5 +29,15 @@
     height: 30%;
     font-weight: bold;
     font-size: large;
-    text-align: center
+    text-align: center;
+    background-color: #9E9E9E;
+    color: #212121;
+    border: none;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    outline: none;   
 }
+
+.selector option {
+
+}
+

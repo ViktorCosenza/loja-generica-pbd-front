@@ -16,3 +16,9 @@
     margin: 5px;
     height: 15%;
 }
+
+textarea {
+    font-size: x-large;
+    font-weight: bolder;
+    padding: 0.5rem;
+}
