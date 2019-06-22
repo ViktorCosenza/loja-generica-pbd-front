@@ -9,20 +9,23 @@ export default {
   },
   estoque: {
     produto: 'produto',
-    loja: 'loja'
+    loja: 'loja',
+    quantidade: 'quantidade'
   },
   funcionarios: {
     genero: 'genero',
     cargo: 'cargo',
+    loja: 'loja',
     cpf: 'cpf',
     ativo: 'ativo',
-    dataDemissao: 'data_demissao',
+    data_demissao: 'data_demissao',
     nome: 'nome',
     rg: 'rg',
-    dataContratacao: 'data_contratacao'
+    data_contratacao: 'data_contratacao'
   },
   lojas: {
     cidade: 'cidade',
+    bairro: 'bairro',
     rua: 'rua',
     numero: 'numero',
     complemento: 'complemento'
@@ -37,8 +40,14 @@ export default {
     descricao: 'descricao'
   },
   vendas: {
-    cpfFuncionario: 'cpf_funcionario',
-    cpfCliente: 'cpf_cliente',
+    cpf_funcionario: 'cpf_funcionario',
+    cpf_cliente: 'cpf_cliente',
     data: 'data'
+  },
+  itemVenda: {
+    produto: 'produto',
+    venda: 'venda',
+    quantidade: 'quantidade',
+    preco_unitario: 'preco_unitario'
   }
 }

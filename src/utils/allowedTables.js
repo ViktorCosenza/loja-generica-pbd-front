@@ -6,5 +6,6 @@ export default [
   { name: 'lojas', value: 'Lojas' },
   { name: 'cidades', value: 'Cidades' },
   { name: 'vendas', value: 'Vendas' },
-  { name: 'estoque', value: 'Estoque' }
+  { name: 'estoque', value: 'Estoque' },
+  { name: 'itemVenda', value: 'Item Venda' }
 ]
